@@ -1,15 +1,11 @@
 import React from "react";
 import s from "./SearchBox.module.css";
 
-const SearchBox = ({ filter, setFilter }) => {
+const SearchBox = () => {
   return (
     <div className={s.wrapper}>
       <p>Find contacts by name</p>
-      <input
-        type="text"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-      />
+      <input type="text" onChange={(e) => {}} />
     </div>
   );
 };

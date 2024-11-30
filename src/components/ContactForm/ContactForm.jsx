@@ -3,21 +3,13 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { nanoid } from "nanoid";
 
-const ContactForm = ({ setContacts, contacts }) => {
+const ContactForm = () => {
   const validationSchema = Yup.object({
     name: Yup.string().min(3).max(50).required(),
     number: Yup.string().required(),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    const newContact = {
-      id: nanoid(),
-      name: values.name,
-      number: values.number,
-    };
-    setContacts([...contacts, newContact]);
-    resetForm();
-  };
+  const handleSubmit = (values, options) => {};
 
   return (
     <div className={s.wrapper}>
