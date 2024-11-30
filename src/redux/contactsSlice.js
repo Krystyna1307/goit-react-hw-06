@@ -17,7 +17,14 @@ const initialState = {
 const slice = createSlice({
   name: "contacts",
   initialState,
-  reducers: {},
+  reducers: {
+    removeContact: (state, action) => {
+      state.contacts.items = state.contacts.items.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+  },
 });
+export const { removeContact } = slice.actions;
 
 export const contactsSlice = slice.reducer;
