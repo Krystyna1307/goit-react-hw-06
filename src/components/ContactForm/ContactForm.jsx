@@ -1,23 +1,26 @@
 import s from "./ContactForm.module.css";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 const ContactForm = () => {
-  const validationSchema = Yup.object({
-    name: Yup.string().min(3).max(50).required(),
-    number: Yup.string().required(),
-  });
+  const initialValues = { name: "", number: "" };
+  const dispatch = useDispatch();
 
-  const handleSubmit = (values, options) => {};
+  const onSubmit = (values, options) => {
+    const newContact = {
+      id: nanoid,
+      name: values.name,
+      number: values.number,
+    };
+    dispatch(addContact(newContact));
+  };
 
   return (
     <div className={s.wrapper}>
-      <Formik
-        initialValues={{ name: "", number: "" }}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
         <Form className={s.form}>
           <label className={s.label}>
             Name
